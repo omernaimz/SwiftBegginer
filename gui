@@ -1,0 +1,111 @@
+package tryingGUI;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.*;
+
+import javax.swing.*;
+
+
+
+import java.awt.*;
+
+
+class gui {
+    public static void main(String args[]) {
+
+    	
+ 
+   	JFrame frame;
+   	JLabel label;
+   	JButton btn1;
+   	JTextField tf;
+   	JCheckBox cB1, cB2;
+   	JRadioButton r1, r2;
+   	ButtonGroup bg;
+   	
+   	frame = new JFrame("Getting Better");
+   	label= new JLabel("User Name: ");//
+   	tf= new JTextField("Enter Name");//
+   	cB1= new JCheckBox("Melon");//
+   	cB2 = new JCheckBox("Water");//
+   	r1=new JRadioButton("A) Male");    
+   	r2=new JRadioButton("B) Female");  
+   	bg= new ButtonGroup();
+   	btn1 = new JButton("Generate");
+   
+   	//bounds:
+   	label.setBounds(20, 20, 100, 40);
+   	tf.setBounds(20, 50, 120, 40);
+   	cB1.setBounds(10, 150, 100, 50);
+   	cB2.setBounds(10, 90, 80, 80);
+   	r1.setBounds(120, 110, 120, 40);
+   	r2.setBounds(120, 150, 120, 50);
+   	btn1.setBounds(40, 200, 100, 30);
+   	//adding to the frame:
+   	frame.add(label);
+   	frame.add(tf);
+   	frame.add(cB1);
+   	frame.add(cB2);
+   	bg.add(r1);
+   	bg.add(r2);
+   	frame.add(r1);
+   	frame.add(r2);
+   	frame.add(btn1);
+   	
+   	//Functions:
+  
+   	///Deleting "Enter Name" on JTField
+   	tf.addMouseListener(new MouseAdapter() {
+   	  public void mouseClicked(MouseEvent e) {
+   	    tf.setText(" ");
+   	  }
+   	});
+   	
+   	//click the button..
+   	btn1.addActionListener(new ActionListener() {
+   		String theResult;// string to save the result of the picking
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			theResult="Your Name is:"+tf.getText();
+			btn1.setText("Clicked");
+			if(r1.isSelected()) { //this if checking if you male or a woman. you can choose only one(or non)
+				
+				theResult+=". You are the Man!";
+		}
+			if(r2.isSelected()) {
+				theResult+=". You are the Sharmota!";
+			}
+			
+			//check if you order them both or separately
+			if(cB1.isSelected() && cB2.isSelected()) {
+				theResult+="WOW! them both! you just in a kind, is a watermelon!";
+			}
+			else {
+			
+			if(cB1.isSelected()) { //checkbuttons output.
+				theResult+=" and you orderd only Water";
+			}	
+			
+			if(cB2.isSelected()) {
+				theResult+=" and you orderd only Melon";
+			}	
+		}
+			
+			JOptionPane.showMessageDialog(btn1,theResult);
+		}
+   		
+   	});
+   	
+   	///Initializing frame
+   	frame.setSize(300,300);
+   	frame.setLayout(null);
+   	frame.setVisible(true);
+    	
+    	
+    }
+}
